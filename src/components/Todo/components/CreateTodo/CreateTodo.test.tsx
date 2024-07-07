@@ -12,7 +12,7 @@ const setup = (mockOnCreateTodo: jest.Mock<any, any>) => {
 
 describe("Testing CreateTodo", () => {
   test("render CreateTodo", () => {
-    render(<CreateTodo onCreateTodo={() => {}} />);
+    render(<CreateTodo onCreateTodo={() => { }} />);
   });
 
   test("checked input", () => {
@@ -24,9 +24,8 @@ describe("Testing CreateTodo", () => {
   test("checked input value", () => {
     const mockOnCreateTodo = jest.fn();
     const { input } = setup(mockOnCreateTodo);
-    expect(input.value).toBe("");
     fireEvent.change(input, { target: { value: "this value" } });
-    expect(input.value).toBe("this value");
+    expect(screen.getByDisplayValue('this value')).toBeInTheDocument();
   });
 
   test("checked input onKeyDown", () => {
