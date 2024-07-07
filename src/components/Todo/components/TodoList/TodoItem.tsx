@@ -15,24 +15,31 @@ export const TodoItem = ({ todo, changeTodo, removeTodo }: TTodoItemProps) => {
       borderBottom="1px solid rgba(0, 0, 0, 0.16)"
     >
       <Box
+        border="1px solid black"
+        borderRadius="24px"
+        width="20px"
+        height="20px"
+        display="inline-flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        {isCompleted && <Check />}
+      </Box>
+      <Box
         display="flex"
+        justifyContent="start"
+        alignItems="center"
         gap="5px"
         width="80%"
-        alignItems="center"
         sx={{ wordBreak: "break-all", cursor: "pointer" }}
         onClick={() => changeTodo(_id)}
       >
-        {isCompleted && (
-          <Button aria-label="Check">
-            <Check />
-          </Button>
-        )}
         <Typography
           onKeyDown={(event) => event.key === "Enter" && changeTodo(_id)}
           tabIndex={0}
           sx={{
             textDecoration: `${isCompleted ? "line-through solid red" : "none"}`,
-            textDecorationThickness: "3px",
+            textDecorationThickness: "2px",
           }}
         >
           {title}

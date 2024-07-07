@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { TTodoItem } from "../../../types";
-import { Box } from "@mui/material";
+import { Box, Input } from "@mui/material";
 
 type TCreateTodoProps = {
   onCreateTodo: (prev: TTodoItem) => void;
@@ -25,32 +25,23 @@ export const CreateTodo = ({ onCreateTodo }: TCreateTodoProps) => {
     <Box
       width="105%"
       display="flex"
-      padding="5px"
+      padding="8px"
       borderRadius="24px"
       boxShadow="0px 4px 16px 0px rgba(0, 0, 0, 0.16)"
       position="sticky"
       top="-10px"
       sx={{ backgroundColor: "#fff" }}
     >
-      <input
-        type="text"
+      <Input
+        sx={{ width: "100%" }}
         aria-label="create-todo"
+        placeholder="Add a task"
+        onKeyDown={(e) => e.key === "Enter" && addTodo(title)}
         value={title}
         onChange={(e) => {
           e.preventDefault();
           setTitle(e.target.value);
         }}
-        onKeyDown={(e) => {
-          e.preventDefault();
-          e.key === "Enter" && addTodo(title);
-        }}
-        style={{
-          backgroundColor: "#fff",
-          width: "100%",
-          borderRadius: "24px",
-          lineHeight: "35px",
-        }}
-        placeholder="Add a task"
       />
     </Box>
   );
